@@ -118,8 +118,6 @@ def fasttext_embedding(word_vectors: KeyedVectors,
         train_texts['tokens_fasttext'] = train_texts['text']
         val_texts['tokens_fasttext'] = val_texts['text']
         
-            
-    word_vectors = api.load('fasttext-wiki-news-subwords-300')
     
     # TRAIN TEXTS
     # Create dictionary to store document vectors
@@ -226,6 +224,7 @@ def all_embedings(train: pd.DataFrame,
         logging.error(f"Error calculating LSA embeddings: {e}")
     
     try:
+        word_vectors = api.load('fasttext-wiki-news-subwords-300')
         train, val = fasttext_embedding(word_vectors, train, val, stop_words=stop_words)
     except Exception as e:
         logging.error(f"Error calculating FastText embeddings: {e}")
